@@ -1,0 +1,21 @@
+# Python RFID Reader Desktop Application Requirements
+
+# Core Python packages (usually included with Python installation)
+# tkinter - GUI framework (included with Python on most platforms)
+
+# Additional packages for enhanced functionality (optional)
+# socket - Network communication (built-in)
+# threading - Background thread management (built-in) 
+# json - JSON message formatting (built-in)
+# datetime - Timestamp functionality (built-in)
+
+# For enhanced TCP/IP functionality (optional)
+# pyserial>=3.5  # For serial port communication if needed
+
+# Development and testing (optional)
+# pytest>=6.0.0  # For unit testing
+# flake8>=4.0.0  # For code linting
+
+# Note: The desktop application uses only Python standard library
+# modules and should run without additional pip installations
+# on most Python 3.6+ installations that include tkinter.
