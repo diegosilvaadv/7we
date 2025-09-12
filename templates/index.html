@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID Reader Web Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-wifi"></i> RFID Reader Web Application</h1>
+            <div class="status-indicator">
+                <span id="connection-status" class="status disconnected">
+                    <i class="fas fa-circle"></i> Disconnected
+                </span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Connection Panel -->
+            <div class="card connection-panel">
+                <div class="card-header">
+                    <h2><i class="fas fa-plug"></i> Connection</h2>
+                </div>
+                <div class="card-body">
+                    <div class="button-group">
+                        <button id="connect-btn" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Connect
+                        </button>
+                        <button id="disconnect-btn" class="btn btn-secondary" disabled>
+                            <i class="fas fa-stop"></i> Disconnect
+                        </button>
+                    </div>
+                    <div id="connection-message" class="message"></div>
+                </div>
+            </div>
+
+            <!-- Antenna Power Panel -->
+            <div class="card power-panel">
+                <div class="card-header">
+                    <h2><i class="fas fa-signal"></i> Antenna Power</h2>
+                </div>
+                <div class="card-body">
+                    <div class="power-controls">
+                        <label for="power-slider">Power Level: <span id="power-value">50</span>%</label>
+                        <input type="range" id="power-slider" min="0" max="100" value="50" class="power-slider">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reading Control Panel -->
+            <div class="card reading-panel">
+                <div class="card-header">
+                    <h2><i class="fas fa-play-circle"></i> Reading Control</h2>
+                </div>
+                <div class="card-body">
+                    <div class="button-group">
+                        <button id="start-btn" class="btn btn-success" disabled>
+                            <i class="fas fa-play"></i> Start Reading
+                        </button>
+                        <button id="stop-btn" class="btn btn-warning" disabled>
+                            <i class="fas fa-pause"></i> Stop Reading
+                        </button>
+                        <button id="clear-btn" class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Clear EPCs
+                        </button>
+                    </div>
+                    <div id="reading-message" class="message"></div>
+                </div>
+            </div>
+
+            <!-- Statistics Panel -->
+            <div class="stats-panel">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3><i class="fas fa-clock"></i> Timer</h3>
+                    </div>
+                    <div class="stat-value" id="timer-display">00:00:00</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <h3><i class="fas fa-tags"></i> EPC Count</h3>
+                    </div>
+                    <div class="stat-value" id="epc-count">0</div>
+                </div>
+            </div>
+
+            <!-- EPC Display Panel -->
+            <div class="card epc-panel">
+                <div class="card-header">
+                    <h2><i class="fas fa-list"></i> Unique EPCs</h2>
+                    <div class="epc-controls">
+                        <button id="refresh-epcs" class="btn btn-sm btn-outline">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                        <button id="export-epcs" class="btn btn-sm btn-outline">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="epc-container">
+                        <div id="epc-list" class="epc-list">
+                            <div class="no-epcs">No EPCs detected yet. Start reading to see results.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Processing...</p>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
